@@ -1,159 +1,117 @@
 <!doctype html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>N213S — landing</title>
-  <meta name="description" content="Landing page สไตล์เท่ ๆ ของ N213S" />
+  <title>N213S — Welcome</title>
+
   <style>
-    /* Reset เบสิค */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #f7f7f7;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      overflow:hidden;
-      background: #0f1724;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      background: #050810;
+      color: #f2f6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    /* Animated gradient background */
+    /* ANIMATED BACKGROUND */
     .bg {
-      position:fixed;
-      inset:0;
-      z-index:0;
-      background: linear-gradient(120deg,#071022 0%, #0f1724 25%, #0b2540 50%, #102a3b 75%, #0b1a2a 100%);
-      filter: blur(12px) contrast(110%);
-      transform: scale(1.05);
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
     }
 
-    /* Subtle moving light */
-    .bg::after{
-      content:"";
-      position:absolute;
-      inset:-20%;
-      background: radial-gradient(30% 30% at 10% 10%, rgba(255,120,120,0.06), transparent 10%),
-                  radial-gradient(40% 40% at 90% 90%, rgba(80,180,255,0.06), transparent 12%),
-                  radial-gradient(25% 25% at 50% 20%, rgba(120,255,180,0.03), transparent 12%);
-      animation: roam 12s linear infinite;
+    .orb {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+      animation: float 18s infinite linear;
       mix-blend-mode: screen;
-      pointer-events:none;
-    }
-    @keyframes roam{
-      0%{transform:translate(0,0) rotate(0deg)}
-      50%{transform:translate(-6%,4%) rotate(120deg)}
-      100%{transform:translate(0,0) rotate(360deg)}
     }
 
-    /* Glass card */
-    .card{
-      position:relative;
-      z-index:1;
-      width:clamp(320px,60vw,920px);
-      max-width:1000px;
-      padding: clamp(24px,6vw,56px);
-      border-radius:18px;
-      backdrop-filter: blur(6px) saturate(120%);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-      display:flex;
-      gap:24px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
+    .orb1 { background: #2b6eff; top: -10%; left: -10%; animation-duration: 22s; }
+    .orb2 { background: #ff3e8f; bottom: -12%; right: -15%; animation-duration: 26s; }
+    .orb3 { background: #32ffa6; top: 50%; left: 60%; animation-duration: 30s; }
+
+    @keyframes float {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(-80px, 60px) scale(1.15); }
+      100% { transform: translate(0, 0) scale(1); }
     }
 
-    .left{
-      flex:1 1 320px;
-      min-width:220px;
+    /* CARD */
+    .card {
+      z-index: 2;
+      padding: 40px 60px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+      max-width: 600px;
+      animation: fadeIn 1.4s ease forwards;
     }
-    h1{
-      font-size: clamp(20px,4vw,44px);
-      letter-spacing: -0.02em;
-      margin-bottom:8px;
-      line-height:1.02;
-    }
-    p.lead{
-      color:rgba(255,255,255,0.82);
-      opacity:0.95;
-      margin-bottom:16px;
-      font-size:clamp(13px,1.6vw,18px);
-    }
-    .cta{
-      display:inline-flex;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .btn{
-      padding:10px 16px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      color: #eaf6ff;
-      transition: transform .14s ease, box-shadow .14s ease;
-      backdrop-filter: blur(6px);
-    }
-    .btn:hover{ transform: translateY(-3px); box-shadow: 0 8px 24px rgba(6,18,60,0.45) }
 
-    /* Right side: code-ish box */
-    .right{
-      width:280px;
-      min-width:220px;
-      background: linear-gradient(180deg, rgba(3,6,12,0.45), rgba(3,6,12,0.25));
-      border-radius:12px;
-      padding:14px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-      font-size:13px;
-      color: #bcd7ff;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .tag { display:inline-block; padding:4px 8px; border-radius:8px; background:rgba(255,255,255,0.03); margin-bottom:10px; font-weight:700 }
-    .meta{ opacity:0.8; font-size:12px; margin-bottom:8px }
-    .code-line{ opacity:0.95; line-height:1.6; white-space:pre-wrap; word-break:break-word }
 
-    /* footer tiny */
-    .foot{ width:100%; text-align:center; margin-top:18px; font-size:12px; color:rgba(255,255,255,0.65) }
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
 
-    /* responsive */
-    @media (max-width:720px){
-      .card{ padding:20px; gap:18px }
-      .right{ order:2; width:100% }
-      .left{ order:1; width:100% }
-      .foot{ margin-top:12px }
+    p {
+      font-size: clamp(14px, 2vw, 18px);
+      opacity: 0.86;
+      margin-bottom: 24px;
+    }
+
+    a.btn {
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      color: #e8f2ff;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      font-weight: 600;
+      transition: 0.2s;
+      display: inline-block;
+    }
+
+    a.btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
     }
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
 
-  <main class="card" role="main">
-    <section class="left">
-      <h1>N213S — มาแล้วโคตรเท่</h1>
-      <p class="lead">เว็บหน้าเดียวง่ายๆ บอกตัวตน สั้น ๆ แรง ๆ แค่นี้ก็พอแล้ว ถ้ามึงอยากแก้ข้อความหรือเปลี่ยนสีบอกมึงเดียวกูปรับให้</p>
+  <div class="bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
 
-      <div class="cta" role="group" aria-label="Actions">
-        <a class="btn" href="#" onclick="alert('สวัสดีจาก N213S ;)'); return false;">Say Hi</a>
-        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">View on GitHub</a>
-      </div>
+  <div class="card">
+    <h1>Welcome, Traveler.</h1>
+    <p>You’ve stumbled into my little corner of the internet.  
+    Take a breath. Stay for a moment. There’s no rush here.</p>
 
-      <div class="foot">Hosted on GitHub Pages — ฟรี มี HTTPS</div>
-    </section>
+    <a class="btn" href="#" onclick="alert('Hey there 👋'); return false;">Say Hi</a>
+  </div>
 
-    <aside class="right" aria-label="Quick info">
-      <div class="tag">n213s.site</div>
-      <div class="meta">status: <strong>live</strong></div>
-      <div class="code-line">
-        &lt;h1&gt;N213S — มาแล้วโคตรเท่&lt;/h1&gt;
-      </div>
-    </aside>
-  </main>
 </body>
 </html>
