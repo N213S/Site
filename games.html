@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="background-animation"></div>
+
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+
+    <main class="games-container">
+        <h1>My Projects</h1>
+
+        <div class="games-grid">
+            <!-- Example Button 1 -->
+            <div class="game-card"
+                onclick="openModal('Project Alpha', 'A cool sci-fi shooter game.', 'https://example.com/alpha')">
+                <i class="fas fa-rocket"></i>
+                <h3>Project Alpha</h3>
+            </div>
+
+            <!-- Example Button 2 -->
+            <div class="game-card"
+                onclick="openModal('Super RPG', 'An epic role-playing adventure.', 'https://example.com/rpg')">
+                <i class="fas fa-dragon"></i>
+                <h3>Super RPG</h3>
+            </div>
+
+            <!-- Add more buttons here by copying the block above -->
+            <div class="game-card"
+                onclick="openModal('Mystery Puzzle', 'Solve the ancient riddles.', 'https://example.com/puzzle')">
+                <i class="fas fa-puzzle-piece"></i>
+                <h3>Mystery Puzzle</h3>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Game Title</h2>
+            <p id="modalDesc">Game description goes here.</p>
+            <a id="modalLink" href="#" target="_blank" class="modal-cta">Play Now</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple script for this page specifically
+        const modal = document.getElementById("gameModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDesc = document.getElementById("modalDesc");
+        const modalLink = document.getElementById("modalLink");
+
+        function openModal(title, desc, link) {
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modalLink.href = link;
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = "none", 300);
+        }
+
+        // Close if clicked outside
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>
