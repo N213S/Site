@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Wait for all resources to load (fonts, images, etc.)
+window.addEventListener('load', () => {
     // Custom Cursor
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
@@ -44,18 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const isBackNavigation = sessionStorage.getItem('navigatingBack') === 'true';
     sessionStorage.removeItem('navigatingBack');
 
-    // Add enter animation on page load
-    if (isBackNavigation) {
-        document.body.classList.add('page-enter-back');
-        setTimeout(() => {
-            document.body.classList.remove('page-enter-back');
-        }, 600);
-    } else {
-        document.body.classList.add('page-enter');
-        setTimeout(() => {
-            document.body.classList.remove('page-enter');
-        }, 600);
-    }
+    // Add small delay to ensure everything is loaded and rendered
+    setTimeout(() => {
+        // Add enter animation on page load
+        if (isBackNavigation) {
+            document.body.classList.add('page-enter-back');
+            setTimeout(() => {
+                document.body.classList.remove('page-enter-back');
+            }, 600);
+        } else {
+            document.body.classList.add('page-enter');
+            setTimeout(() => {
+                document.body.classList.remove('page-enter');
+            }, 600);
+        }
+    }, 100); // Small delay to ensure rendering is complete
 
     // Intercept all internal links for smooth navigation
     const internalLinks = document.querySelectorAll('a:not([target="_blank"])');
